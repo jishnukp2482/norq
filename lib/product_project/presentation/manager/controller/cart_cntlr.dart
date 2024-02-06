@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:hive/hive.dart';
 import 'package:norq/product_project/data/remote/modals/response/product_response_modal.dart';
 import 'package:norq/product_project/presentation/routes/LocalStorageNames.dart';
@@ -115,6 +114,7 @@ class CartCntlr extends GetxController {
     }
     if (!kReleaseMode) {
       debugPrint("hive save==$box");
+      debugPrint("saved successfully to box");
     }
     savehiveisLoading.value = false;
   }
@@ -129,6 +129,7 @@ class CartCntlr extends GetxController {
     cartList.clear();
     cartList.addAll(loadedcartList);
     if (!kReleaseMode) {
+      debugPrint("data retrieved successfully from box");
       debugPrint("hive load ==$loadedcartList");
     }
     loadhiveisLoading.value = false;

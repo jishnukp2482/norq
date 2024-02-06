@@ -97,98 +97,104 @@ class SignIn extends StatelessWidget {
                     child: SingleChildScrollView(
                       child: Form(
                         key: authController.signInGlobalKey,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            LabelCustomTextField(
-                              hintText: "enter your E-mail",
-                              textFieldLabel: "G-Mail",
-                              controller: authController.signInMailController,
-                              textFieldLabelColor:
-                                  Theme.of(context).primaryColor,
-                              validator: (p0) {
-                                final emailRegex = RegExp(
-                                    r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$');
-                                if (!emailRegex.hasMatch(p0)) {
-                                  return 'Enter a valid email address';
-                                }
-                                return null;
-                              },
-                            ),
-                            SizedBox(
-                              height: h * 0.05,
-                            ),
-                            LabelCustomTextField(
-                              hintText: "enter your Password",
-                              passwordfield: true,
-                              controller:
-                                  authController.signInPasswordController,
-                              textFieldLabel: "Password",
-                              textFieldLabelColor:
-                                  Theme.of(context).primaryColor,
-                              validator: (p0) {
-                                if (p0.isEmpty) {
-                                  return "enter your password";
-                                }
-                                return null;
-                              },
-                            ),
-                            SizedBox(
-                              height: h * 0.05,
-                            ),
-                            Align(
-                                alignment: Alignment.center,
-                                child: Obx(
-                                  () => authController.isSignInLoading.value
-                                      ? SizedBox(
-                                          height: h * 0.045,
-                                          width: w * 0.1,
-                                          child: CircularProgressIndicator(),
-                                        )
-                                      : CustomGradientButton(
-                                          title: "Sign in",
-                                          onPressed: () {
-                                            authController.signIn(
-                                                authController
-                                                    .signInMailController.text,
-                                                authController
-                                                    .signInPasswordController
-                                                    .text);
-                                          }),
-                                )),
-                            SizedBox(
-                              height: h * 0.05,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    Get.toNamed(AppPages.signUp);
-                                  },
-                                  child: const Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    crossAxisAlignment: CrossAxisAlignment.end,
-                                    children: [
-                                      Text(
-                                        "Don't have an account?",
-                                        style: TextStyle(
-                                            color: AppColors.grey,
-                                            fontSize: 14),
-                                      ),
-                                      Text(
-                                        "Sign uP",
-                                        style: TextStyle(
-                                            color: AppColors.black,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            )
-                          ],
+                        child: AutofillGroup(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              LabelCustomTextField(
+                                autofillHints: [AutofillHints.username],
+                                hintText: "enter your E-mail",
+                                textFieldLabel: "G-Mail",
+                                controller: authController.signInMailController,
+                                textFieldLabelColor:
+                                    Theme.of(context).primaryColor,
+                                validator: (p0) {
+                                  final emailRegex = RegExp(
+                                      r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$');
+                                  if (!emailRegex.hasMatch(p0)) {
+                                    return 'Enter a valid email address';
+                                  }
+                                  return null;
+                                },
+                              ),
+                              SizedBox(
+                                height: h * 0.05,
+                              ),
+                              LabelCustomTextField(
+                                autofillHints: [AutofillHints.password],
+                                hintText: "enter your Password",
+                                passwordfield: true,
+                                controller:
+                                    authController.signInPasswordController,
+                                textFieldLabel: "Password",
+                                textFieldLabelColor:
+                                    Theme.of(context).primaryColor,
+                                validator: (p0) {
+                                  if (p0.isEmpty) {
+                                    return "enter your password";
+                                  }
+                                  return null;
+                                },
+                              ),
+                              SizedBox(
+                                height: h * 0.05,
+                              ),
+                              Align(
+                                  alignment: Alignment.center,
+                                  child: Obx(
+                                    () => authController.isSignInLoading.value
+                                        ? SizedBox(
+                                            height: h * 0.045,
+                                            width: w * 0.1,
+                                            child: CircularProgressIndicator(),
+                                          )
+                                        : CustomGradientButton(
+                                            title: "Sign in",
+                                            onPressed: () {
+                                              authController.signIn(
+                                                  authController
+                                                      .signInMailController
+                                                      .text,
+                                                  authController
+                                                      .signInPasswordController
+                                                      .text);
+                                            }),
+                                  )),
+                              SizedBox(
+                                height: h * 0.05,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.toNamed(AppPages.signUp);
+                                    },
+                                    child: const Column(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: [
+                                        Text(
+                                          "Don't have an account?",
+                                          style: TextStyle(
+                                              color: AppColors.grey,
+                                              fontSize: 14),
+                                        ),
+                                        Text(
+                                          "Sign uP",
+                                          style: TextStyle(
+                                              color: AppColors.black,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),

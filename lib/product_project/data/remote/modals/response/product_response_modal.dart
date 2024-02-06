@@ -61,14 +61,15 @@ class ProductResponseModal {
       };
 }
 
+@HiveType(typeId: 3)
 enum Category {
-  @HiveField(7)
+  @HiveField(1)
   ELECTRONICS,
-  @HiveField(8)
+  @HiveField(2)
   JEWELERY,
-  @HiveField(9)
+  @HiveField(3)
   MEN_S_CLOTHING,
-  @HiveField(10)
+  @HiveField(4)
   WOMEN_S_CLOTHING
 }
 
@@ -79,8 +80,11 @@ final categoryValues = EnumValues({
   "women's clothing": Category.WOMEN_S_CLOTHING
 });
 
+@HiveType(typeId: 4)
 class Rating {
+  @HiveField(1)
   double rate;
+  @HiveField(2)
   int count;
 
   Rating({

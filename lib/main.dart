@@ -14,6 +14,8 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(CartModalAdapter());
   Hive.registerAdapter(ProductResponseModalAdapter());
+  Hive.registerAdapter(CategoryAdapter());
+  Hive.registerAdapter(RatingAdapter());
 
   await setUp();
   runApp(const MyApp());

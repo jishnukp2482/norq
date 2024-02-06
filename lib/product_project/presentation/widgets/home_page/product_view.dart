@@ -90,8 +90,8 @@ class ProductViewItem extends StatelessWidget {
                     imageUrl: productResponseModal.image,
                     fit: BoxFit.fill,
                     placeholder: (context, url) => SizedBox(
-                      height: h * 0.1,
-                      width: w * 0.05,
+                      height: h * 0.05,
+                      width: w * 0.1,
                       child: CircularProgressIndicator(),
                     ),
                     errorWidget: (context, url, error) =>
