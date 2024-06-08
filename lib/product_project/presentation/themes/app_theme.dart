@@ -20,8 +20,8 @@ class AppTheme {
           floatingLabelBehavior: FloatingLabelBehavior.never,
         ),
         primarySwatch: Colors.blue,
-        primaryColor: AppColors.maincolor,
-        primaryColorLight: AppColors.maincolor2,
-        primaryColorDark: AppColors.maincolor3,
+        primaryColor: AppColors.white,
+        primaryColorLight: AppColors.appRed,
+        primaryColorDark: AppColors.appBlack,
       );
 }

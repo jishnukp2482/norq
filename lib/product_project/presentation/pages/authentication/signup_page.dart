@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:norq/product_project/presentation/widgets/custom/custom_label_text_Filed.dart';
 
-import '../../manager/controller/auth_cntlr.dart';
+import '../../manager/controller/auth/auth_cntlr.dart';
 import '../../routes/app_pages.dart';
 import '../../themes/app_colors.dart';
 import '../../widgets/custom/custom_gradient_button.dart';

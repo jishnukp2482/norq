@@ -4,4 +4,7 @@ class AppPages {
   static const signUp = "/SignUp";
   static const homePage = "/HomePage";
   static const cartPage = "/CartPage";
+  static const onboardingPage = "/onboarding";
+  static const bottomNavPage = "/bottomNavPage";
+  static const wishList = "/WishListPage";
 }

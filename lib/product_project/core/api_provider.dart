@@ -40,22 +40,25 @@ class ApiProvider {
     }
   }
   addToken() async {
-    GetStorage storage = GetStorage();
-    String? accesstoken = storage.read(LocalStorageNames.accessTokenKEY);
-    String? refreshtoken = storage.read(LocalStorageNames.refreshTokenKEY);
-    Map<String, dynamic> decodedToken = JwtDecoder.decode(accesstoken!);
-    prettyPrint(decodedToken["name"]);
-    bool isTokenExpired = JwtDecoder.isExpired(accesstoken);
-    Duration tokenTime = JwtDecoder.getTokenTime(accesstoken);
-    prettyPrint("token time =${tokenTime.inMinutes}");
-    if (!isTokenExpired) {
-      _dio.options.headers.addAll({'authorization': 'Bearer $accesstoken'});
+    final getstorage = GetStorage();
+    String? accesstoken = getstorage.read(LocalStorageNames.accessTokenKEY);
+    String? refreshtoken = getstorage.read(LocalStorageNames.refreshTokenKEY);
+    if (accesstoken != null) {
+      Map<String, dynamic> decodedToken = JwtDecoder.decode(accesstoken);
+      prettyPrint(decodedToken["name"]);
+      bool isTokenExpired = JwtDecoder.isExpired(accesstoken);
+      Duration tokenTime = JwtDecoder.getTokenTime(accesstoken);
+      prettyPrint("token time =${tokenTime.inMinutes}");
+      if (!isTokenExpired) {
+        _dio.options.headers.addAll({'authorization': 'Bearer $accesstoken'});
+      } else {
+        _dio.options.headers.addAll({'Cookie': 'refreshToken=$refreshtoken'});
+      }
+      _dio.options.headers.addAll(
+          {'accessToken': '$accesstoken', 'refreshToken': "$refreshtoken"});
     } else {
-      _dio.options.headers.addAll({'Cookie': 'refreshToken=$refreshtoken'});
+      prettyPrint("Access token is null");
     }
-
-    // _dio.options.headers.addAll(
-    //     {'accessToken': '$accesstoken', 'refreshToken': "$refreshtoken"});
   }
 
   Future<dynamic> get(String endPoint) async {

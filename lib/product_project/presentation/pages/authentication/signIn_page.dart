@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../manager/controller/auth_cntlr.dart';
+import '../../manager/controller/auth/auth_cntlr.dart';
 import '../../routes/app_pages.dart';
 import '../../themes/app_colors.dart';
 import '../../widgets/custom/custom_gradient_button.dart';
@@ -26,7 +26,10 @@ class SignIn extends StatelessWidget {
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
                       colors: [
-                        Theme.of(context).primaryColor,
+                        // Theme.of(context).primaryColor,
+                        //  Theme.of(context).primaryColor,
+                        //   Theme.of(context).primaryColor,
+                       Theme.of(context).primaryColor,
                         Theme.of(context).primaryColorLight,
                         Theme.of(context).primaryColorDark,
                       ],
@@ -80,7 +83,7 @@ class SignIn extends StatelessWidget {
                   right: 0,
                   bottom: 0,
                   child: Container(
-                    height: h * 0.65,
+                    height: h * 0.67,
                     width: w,
                     padding: EdgeInsets.fromLTRB(
                       w * 0.05,
@@ -159,6 +162,8 @@ class SignIn extends StatelessWidget {
                                                   authController
                                                       .signInPasswordController
                                                       .text);
+                                              // Get.offAllNamed(
+                                              //     AppPages.homePage);
                                             }),
                                   )),
                               SizedBox(

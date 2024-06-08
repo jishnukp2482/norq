@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 
-import '../../data/remote/modals/response/product_response_modal.dart';
+import '../../../data/remote/modals/response/product_response_modal.dart';
 part 'Cart_Modal.g.dart';
 
 @HiveType(typeId: 1)
@@ -13,4 +13,12 @@ class CartModal {
   final double subtotal;
 
   CartModal(this.productResponseModal, this.quantity, this.subtotal);
+
+  Map<String, dynamic> toJson() {
+    return {
+      "productResponseModal": productResponseModal.toJson(),
+      "quantity": quantity,
+      "subTotal": subtotal,
+    };
+  }
 }
